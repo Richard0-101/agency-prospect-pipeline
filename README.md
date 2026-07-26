@@ -2,17 +2,21 @@
 
 I built this in ~27 hours for the founder of a YC startup who gave me a live problem instead of an interview: his company replaces marketing agencies, so he wanted to find companies that already work with an agency, since those are the ones he can win. "Set it up, and if I like it, I offer you a job."
 
-So this is what I shipped. Give it a marketing agency's website, and it works out who that agency's clients probably are, figures out which of them are worth chasing, pulls the decision-makers, and drafts the outreach.
+Give it a marketing agency's website. It works out who that agency's clients probably are, enriches the real ones, and drafts the outreach.
 
-## What it does
+## How it works
 
-1. Crawl the agency's site: finds the /work, /clients, /case-studies pages and reads them.
-2. Extract the client brands from logos and case-study text (deterministic scraping first: alt-text, logo filenames, headings), then a small confidence score on each guess.
-3. Refine with an LLM: I hand the messy scraped names to the model and get back clean company names plus a best-guess domain. The LLM is the cleanup step, not the brain.
-4. Enrich the real companies through Apollo: company size plus the senior marketing/sales people (name, title, email, LinkedIn).
-5. Draft a 3-step outreach sequence and drop it into Gmail as drafts (never auto-sends, a human still hits send).
+```mermaid
+flowchart LR
+    A[Agency website URL] --> B[1. Crawl<br/>reads /work, /clients]
+    B --> C[2. Extract<br/>logos + case-study text]
+    C --> D[3. Refine with LLM<br/>clean names + domain]
+    D --> E[4. Enrich via Apollo<br/>company size + contacts]
+    E --> F[5. Draft outreach<br/>Gmail drafts, never auto-sent]
+    F --> G[Prospects + contacts + ready drafts]
+```
 
-Messy public HTML in, a grouped list of prospects with contacts and ready drafts out.
+The LLM is the cleanup step, not the brain. The scraping is deterministic (alt-text, logo filenames, headings); the model just turns messy scraped names into clean company names and a best-guess domain.
 
 ## The thing I actually learned
 
@@ -42,7 +46,7 @@ I'd rather be honest about the seams than pretend this is finished:
 
 ## What I'd build next
 
-A social-surfacing step: before writing the outreach, pull the prospect's recent news and blog activity, find where it connects to what the sender actually offers, and work that specific hook into the email. Relevance beats volume: anyone can send 3,000 generic emails; the point is the one line that proves you actually looked.
+A social-surfacing step: before writing the outreach, pull the prospect's recent news and blog activity, find where it connects to what the sender actually offers, and work that specific hook into the email. Relevance beats volume, anyone can send 3,000 generic emails; the point is the one line that proves you actually looked.
 
 ---
 
