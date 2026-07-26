@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>Agency: {{ agency["url"] }}</h3>
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr>
+    <th>Prospect company</th>
+    <th>Domain</th>
+    <th>Outreach</th>
+  </tr>
+
+  {% for c in clients %}
+  <tr>
+    <td>{{ c["client_name"] }}</td>
+
+    <td>
+      {% if c["client_domain"] %}
+        {{ c["client_domain"] }}
+      {% else %}
+        Not available
+      {% endif %}
+    </td>
+
+    <td>
+      <a href="/client/{{ c['id'] }}">View</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

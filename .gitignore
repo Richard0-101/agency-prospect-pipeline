@@ -1,0 +1,38 @@
+# --- Secrets / credentials (NEVER commit) ---
+.env
+.env.*
+!.env.example
+client_secret.json
+*client_secret*.json
+*.pem
+*.key
+
+# --- Local data (SQLite DB holds scraped data + a live Gmail OAuth token) ---
+data/
+*.db
+*.sqlite3
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- Jinja2 compiled-template cache (auto-generated, not source) ---
+templates/tmpl_*.py
+
+# --- Editor / OS noise ---
+.vscode/
+.idea/
+.DS_Store
+.env
+client_secret.json
+*client_secret*.json
+data/
+*.db
+__pycache__/
+.venv/
+venv/
+templates/tmpl_*.py

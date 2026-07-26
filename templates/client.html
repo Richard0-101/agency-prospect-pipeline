@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h3>{{ client["client_name"] }}</h3>
+
+<p><b>Domain:</b>
+  {% if client["client_domain"] %}
+    {{ client["client_domain"] }}
+  {% else %}
+    Not available
+  {% endif %}
+</p>
+
+<p><b>Company size (Apollo):</b>
+  {% if client["company_size"] %}
+    {{ client["company_size"] }}
+  {% else %}
+    Not fetched yet
+  {% endif %}
+</p>
+
+<form method="POST" action="/client/{{ client['id'] }}/apollo">
+  <button type="submit">Fetch decision makers from Apollo</button>
+</form>
+
+<hr>
+
+<h4>Top decision makers</h4>
+
+{% if contacts and contacts|length > 0 %}
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr>
+    <th>Name</th>
+    <th>Title</th>
+    <th>Email</th>
+    <th>LinkedIn</th>
+    <th>Send email</th>
+  </tr>
+
+  {% for c in contacts %}
+  <tr>
+    <td>{{ c["name"] }}</td>
+    <td>{{ c["title"] }}</td>
+
+    <td>
+      {% if c["email"] %}
+        {{ c["email"] }}
+      {% else %}
+        —
+      {% endif %}
+    </td>
+
+    <td>
+      {% if c["linkedin_url"] %}
+        <a href="{{ c['linkedin_url'] }}" target="_blank" rel="noopener noreferrer">
+          View
+        </a>
+      {% else %}
+        —
+      {% endif %}
+    </td>
+    <td>
+      {% if c["email"] %}
+        <form method="POST" action="/contact/{{ c['id'] }}/draft" style="margin:0;">
+          <button type="submit">Send email</button>
+        </form>
+      {% else %}
+        —
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No contacts fetched yet. Click the Apollo button above.</p>
+{% endif %}
+
+{% endblock %}

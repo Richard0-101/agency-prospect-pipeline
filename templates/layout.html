@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Agency MVP</title>
+</head>
+<body>
+  <div style="max-width:1000px;margin:20px auto;font-family:Arial;">
+    <h2>Agency → Intelligent Parser → Clients → Apollo → Gmail Drafts</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li><b>{{ category }}</b>: {{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <hr>
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

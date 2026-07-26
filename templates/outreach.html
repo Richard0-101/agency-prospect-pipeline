@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>Outreach — {{ client["client_name"] or client["client_domain"] }}</h3>
+
+<form method="POST" action="/outreach/{{ client['id'] }}/sync_gmail">
+  <button type="submit">Sync to Gmail Drafts</button>
+</form>
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr>
+    <th>Recipient</th><th>Step</th><th>Subject</th><th>Status</th><th>Draft ID</th>
+  </tr>
+  {% for s in sequences %}
+  <tr>
+    <td>{{ s["contact_email"] }}</td>
+    <td>{{ s["step"] }}</td>
+    <td style="max-width:400px">{{ s["subject"] }}</td>
+    <td>{{ s["status"] }}</td>
+    <td>{{ s["gmail_draft_id"] }}</td>
+  </tr>
+  <tr>
+    <td colspan="5">
+      <pre style="white-space:pre-wrap">{{ s["body"] }}</pre>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

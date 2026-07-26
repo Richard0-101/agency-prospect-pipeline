@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+  <p>
+    <a href="/gmail/connect">Connect Gmail</a>
+  </p>
+
+  <form method="POST" action="/scan">
+    <label>Marketing agency website URL</label><br>
+    <input name="agency_url" style="width:700px" placeholder="https://..." required>
+    <button type="submit">Scan Agency</button>
+  </form>
+{% endblock %}
