@@ -24,7 +24,6 @@ You feed it a competitor agency's website. It crawls the site and rips the clien
 
 ## Reference images
 
-<img width="1663" height="946" alt="1" src="https://github.com/user-attachments/assets/32ad6823-16f2-4262-b183-844411b02b11" />
 <img width="1663" height="719" alt="1 (1)" src="https://github.com/user-attachments/assets/5ea262bc-19fa-41f8-ad00-b28219d0d53b" />
 <img width="1661" height="947" alt="2" src="https://github.com/user-attachments/assets/83a9578a-df57-4d52-8ce7-b4a86182d72d" />
 <img width="1665" height="945" alt="3" src="https://github.com/user-attachments/assets/e34cd09a-8bb0-405f-a3d8-fd41732fab19" />
