@@ -1,10 +1,14 @@
 # Agency to Prospect Pipeline
 
-I built this in ~27 hours for the founder of a YC startup who gave me a live problem instead of an interview: his company replaces marketing agencies, so he wanted to find companies that already work with an agency, since those are the ones he can win. "Set it up, and if I like it, I offer you a job."
+**The problem.** If you're a company trying to steal your competitor's clients, there's an obvious wall: you don't know who those clients are. Nobody publishes that list. So you can't pitch them.
 
-Give it a marketing agency's website. It works out who that agency's clients probably are, enriches the real ones, and drafts the outreach.
+**How I ended up building it.** I cold-emailed a YC-backed startup called Uplane and said: give me a real problem, I'll solve it in 48 hours, no meeting. The founder had a product fresh out of the oven with zero customers. His plan was to go after the clients of the marketing agencies he was competing with, since those companies already pay for exactly what he does. One catch: he had no idea who those clients were. So that became the problem. Find them.
 
-## How it works
+**How long it took.** 27 hours, start to finish. Idea to deployed.
+
+**Stack.** Python, HTML, Gmail OAuth, OpenAI API, Apollo.io API.
+
+## What it actually does
 
 ```mermaid
 flowchart LR
@@ -16,38 +20,18 @@ flowchart LR
     F --> G[Prospects + contacts + ready drafts]
 ```
 
-The LLM is the cleanup step, not the brain. The scraping is deterministic (alt-text, logo filenames, headings); the model just turns messy scraped names into clean company names and a best-guess domain.
+You feed it a competitor agency's website. It crawls the site and rips the client brands out of the logos and case studies. Those names come out messy, so the LLM cleans them into real companies with real domains. Then Apollo enriches each one, company size, the actual decision-makers, their emails. Finally it writes a 3-step outreach sequence and drops it into Gmail as drafts. It never sends anything on its own, a human still has to hit the button.
 
-## The thing I actually learned
+## Reference images
 
-Apollo is great until it isn't. On a big, digitally-visible company it came back instantly with the full picture. On the smaller prospects the crawler surfaced, it just returned "not available": no domain, no contacts, nothing.
+<!-- Drop screenshots here once names/emails/domains are blurred -->
 
-That gap is the whole problem. The companies that are easy to enrich are the ones everyone's already chasing; the interesting ones are invisible to the standard data tools. Watching my own pipeline hit that wall is the most useful thing I got out of building this.
+## The thing that stuck with me
 
-## Stack
+Here's what I didn't expect. Apollo crushed it on the big, visible companies, instant, full profile, every contact. On the small ones the crawler dug up? Nothing. Blank. "Not available."
 
-Python / Flask, SQLite, OpenAI (name cleanup), Apollo.io (enrichment), Gmail OAuth (drafts). Server-rendered, no frontend framework. I was moving fast, not building to last.
-
-## Running it
-
-    pip install -r requirements.txt
-    cp .env.example .env
-    python app.py
-
-Heads up: the enrichment step needs a paid Apollo tier, the people-search endpoints don't work on free. The crawl-and-extract half runs without it.
-
-## What's rough (on purpose)
-
-I'd rather be honest about the seams than pretend this is finished:
-
-- The confidence scoring exists but the UI doesn't use it yet. The scraper scores every candidate, then the LLM step flattens it and I treat all prospects equally. It's wired to become a ranking, I just didn't get there in 27 hours.
-- I cut a feature I'd built. The founder's "A-star" ask was scraping each brand's Meta ad-transparency page ID. I built a version that guessed the ID with the LLM, but a guessed ID silently onboards the wrong brand, so I pulled it. Doing it right means resolving the real ID from Meta, not guessing.
-- Some Apollo response-shape handling is defensive guessing against a messy API.
-
-## What I'd build next
-
-A social-surfacing step: before writing the outreach, pull the prospect's recent news and blog activity, find where it connects to what the sender actually offers, and work that specific hook into the email. Relevance beats volume, anyone can send 3,000 generic emails; the point is the one line that proves you actually looked.
+And that's the whole game, isn't it. The companies that are easy to find are the ones everyone's already fighting over. The ones worth finding are the ones the standard tools can't see. I only really got that by watching my own thing hit the wall.
 
 ---
 
-Built solo, fast, for real, by Sam Richard.
+Built solo and fast. No brief, no salary, just a problem I couldn't put down.
