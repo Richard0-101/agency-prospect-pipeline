@@ -24,9 +24,16 @@ You feed it a competitor agency's website. It crawls the site and rips the clien
 
 ## Reference images
 
+Step 1: Paste your competitor's website URL
 <img width="1663" height="719" alt="1 (1)" src="https://github.com/user-attachments/assets/5ea262bc-19fa-41f8-ad00-b28219d0d53b" />
+
+Step 2: You'll see the list of clients. Click any of them to view the decision-makers to reach out to
 <img width="1661" height="947" alt="2" src="https://github.com/user-attachments/assets/83a9578a-df57-4d52-8ce7-b4a86182d72d" />
+
+Step 3: View the list of decision-makers, their LinkedIn, and a send-email CTA. Click send to drop it into your email drafts 
 <img width="1665" height="945" alt="3" src="https://github.com/user-attachments/assets/e34cd09a-8bb0-405f-a3d8-fd41732fab19" />
+
+Step 4: View / edit / send the outreach from your drafts 
 <img width="1667" height="943" alt="4" src="https://github.com/user-attachments/assets/d3c54de9-5168-42c3-a8d2-d7d30ce981ec" />
 
 
